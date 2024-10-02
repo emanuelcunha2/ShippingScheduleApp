@@ -1,0 +1,20 @@
+﻿Shipping Schedule
+1.0.0.0
+
+winexe
+C#
+.cs
+C:\VS_2022_PROJECTS\ShippingScheduleMVVM\ShippingScheduleMVVM\obj\Debug\net6.0-windows10.0.17763.0\
+ShippingScheduleMVVM
+none
+false
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+C:\VS_2022_PROJECTS\ShippingScheduleMVVM\ShippingScheduleMVVM\App.xaml
+22523692992
+11104377373
+891124934432
+226119406703
+MainWindow.xaml;Resources\Dictionaries\Fonts.xaml;Resources\Styles\ComboBoxItemContainerStyle.xaml;Resources\Styles\ComboBoxStyle.xaml;Resources\Styles\DatePickerCalendarStyle.xaml;Resources\Styles\DatePickerStyle.xaml;Resources\Styles\SliderStyle.xaml;Views\LoginWindow.xaml;Views\Modals\CancelRecordWindow.xaml;Views\Modals\CategoryHoverWindow.xaml;Views\Modals\CopyPasteWindow.xaml;Views\Modals\CustomAlertWindow.xaml;Views\Modals\ImportPartsExcelWindow.xaml;Views\Modals\PartComment.xaml;Views\Modals\RecordPrint.xaml;Views\Modals\SelectShipToWindow.xaml;Views\Modals\SelectUnloadingPointWindow.xaml;Views\RecordWindow.xaml;Views\RegisterWindow.xaml;Views\ScheduleManagementView.xaml;Views\UserControls\CalendarView.xaml;Views\UserControls\CheckBoxControl.xaml;
+
+False
+

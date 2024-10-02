@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ShippingScheduleMVVM.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="db_username" Type="System.String" Scope="User">
+      <Value Profile="(Default)">program_user</Value>
+    </Setting>
+    <Setting Name="db_table" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PCL</Value>
+    </Setting>
+    <Setting Name="db_ip" Type="System.String" Scope="User">
+      <Value Profile="(Default)">130.171.191.142</Value>
+    </Setting>
+    <Setting Name="db_password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">praga</Value>
+    </Setting>
+    <Setting Name="smtpUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ShippingSchedule@no-reply.com</Value>
+    </Setting>
+    <Setting Name="smtpUserDisplayName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">APTIV Shipping Schedule</Value>
+    </Setting>
+    <Setting Name="smtpServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">144.250.149.120</Value>
+    </Setting>
+    <Setting Name="smtpPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">25</Value>
+    </Setting>
+    <Setting Name="smtpTimeOut" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10000</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,272 @@
+﻿<Window x:Class="ShippingScheduleMVVM.Views.Modals.ImportPartsExcel2Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShippingScheduleMVVM.Views" 
+        xmlns:viewmodels="clr-namespace:ShippingScheduleMVVM.ViewModels"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:modals="clr-namespace:ShippingScheduleMVVM.ViewModels.Modals"
+        d:DataContext="{d:DesignInstance Type=modals:ImportPartsExcel2Viewmodel}"
+        mc:Ignorable="d" 
+        UseLayoutRounding="False" RenderOptions.BitmapScalingMode ="LowQuality"
+        WindowStyle="None" WindowStartupLocation="CenterOwner" AllowsTransparency="True"  
+        Title="{Binding Path=WindowSettings.Name, Mode=TwoWay, FallbackValue='ThisImportPartsExcelWindow'}" Background="{x:Null}" ResizeMode="NoResize"
+        Top="{Binding Path=WindowSettings.Top, Mode=TwoWay}" 
+        Left="{Binding Path=WindowSettings.Left, Mode=TwoWay}" 
+        Height="{Binding Path=WindowSettings.Height, Mode=TwoWay}" 
+        Width="{Binding Path=WindowSettings.Width, Mode=TwoWay}"
+        ShowInTaskbar="True"
+        x:Name="ThisImportPartsExcelWindow">
+    <Window.InputBindings>
+        <KeyBinding Key="Esc"  Command="{Binding CloseWindow}" CommandParameter="{Binding ElementName=ThisImportPartsExcelWindow}"/>
+        <KeyBinding Key="Enter"  Command="{Binding CloseWindow}" CommandParameter="{Binding ElementName=ThisImportPartsExcelWindow}"/>
+    </Window.InputBindings>
+
+    <Grid Height="380" Width="915" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Grid.RenderTransform>
+            <ScaleTransform ScaleX="{Binding WindowSettings.ScaleX}" ScaleY="{Binding WindowSettings.ScaleY}" CenterX="0" CenterY="0" />
+        </Grid.RenderTransform>
+        <!-- DropShadow -->
+        <Border Background="#fafafa" CornerRadius="20" Margin="5">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Direction="-90"  RenderingBias="Performance" ShadowDepth="0" Opacity="0.3"/>
+            </Border.Effect>
+        </Border>
+        <!-- Main Border -->
+        <Border Background="#fafafa" CornerRadius="20" Margin="5">
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"></RowDefinition>
+                    <RowDefinition Height="0*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="6*"></RowDefinition>
+                    <RowDefinition Height="6*"></RowDefinition>
+                    <RowDefinition Height="12*"></RowDefinition>
+                    <RowDefinition Height="10*"></RowDefinition>
+                    <RowDefinition Height="10*"></RowDefinition>
+                    <RowDefinition Height="5*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!-- Close Window Button -->
+                <Border Grid.Row="0" Grid.Column="10" Height="11" Width="11" Margin="0,-5,-5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Cursor="Hand" CornerRadius="10">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction Command="{Binding CloseWindow}" CommandParameter="{Binding ElementName=ThisImportPartsExcelWindow}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Image Stretch="Uniform"  RenderOptions.BitmapScalingMode="HighQuality" Source="/Resources/Images/Cross_bs.png" />
+                </Border>
+
+                <!-- Title -->
+                <StackPanel Orientation="Horizontal" Grid.Column="0"  Grid.Row="0" Grid.ColumnSpan="8">
+                    <TextBlock Margin="0,-5,0,0" Text="Importar partes Excel" FontFamily="{StaticResource Bold}" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="17" Foreground="{StaticResource PrimaryThemeColor}"/>
+                </StackPanel>
+
+                <!-- Template selection -->
+                <DockPanel Grid.Column="8"  Grid.Row="3" Grid.ColumnSpan="3" Margin="0,-33,0,33">
+                    <TextBlock Grid.Row="2" Grid.Column="0" FontSize="10.5" FontFamily="{StaticResource Medium}" Text="Layout selecionado" VerticalAlignment="Center" Margin="48,0,0,0"/>
+                    <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" BorderThickness="1" BorderBrush="LightGray" CornerRadius="3" Padding="1" Background="White" Margin="10,5,0,5" Cursor="Hand">
+                        <ComboBox ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Layouts}" SelectedItem="{Binding SelectedLayout, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="10" FontFamily="{StaticResource Medium}" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyles}" Style="{StaticResource ComboBoxStyles}" Background="White" BorderThickness="0" VerticalContentAlignment="Center"></ComboBox>
+                    </Border>
+                </DockPanel>
+
+                <DockPanel Grid.Column="8"  Grid.Row="3" Grid.ColumnSpan="3" >
+                    <Border  Background="{StaticResource PrimaryThemeColor}" CornerRadius="3"  Padding="7,0,7,0" HorizontalAlignment="Right" Cursor="Hand" Margin="0,5,0,5" >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding SaveCustomLayout}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="10" Margin="0,0,0,0" FontFamily="{StaticResource Medium}" Text="Gravar layout" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                            <Image Visibility="{Binding CantSelectLayoutVisibility}" Margin="7.5,0,0,0" Height="11" Width="11"  Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Source="/Resources/Images/padlock.png" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </DockPanel>
+
+                <!-- Guide text -->
+                <TextBlock Grid.Row="2" Margin="0,2,0,0" Grid.Column="0" Grid.ColumnSpan="2" Text="Colar a informação do excel aqui" FontFamily="{StaticResource Medium}"  HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="8"  Foreground="#9e9e9e" />
+
+                <!-- ExcelData Textbox -->
+                <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" BorderThickness="1" Background="White" BorderBrush="LightGray" CornerRadius="2" Padding="3,0,3,0" Margin="0,5,0,5">
+                    <TextBox UndoLimit="3" AcceptsTab="True"  AcceptsReturn="True"  Text="{Binding ExcelImportText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Background="Transparent" FontFamily="{StaticResource Medium}" BorderThickness="0" VerticalContentAlignment="Center" FontSize="9"/>
+                </Border>
+
+                <!-- Import Button and clean button -->
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
+                    <!-- Import -->
+                    <Border  Background="{StaticResource PrimaryThemeColor}" CornerRadius="3"  Padding="7,0,7,0" HorizontalAlignment="Left" Cursor="Hand" Margin="10,5,0,5" >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding ImportFromExcel}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <TextBlock FontSize="10"  FontFamily="{StaticResource Medium}" Text="Importar" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    </Border>
+                    <!-- Clean -->
+                    <Border Background="#e3364a" CornerRadius="3"  Padding="7,0,7,0" HorizontalAlignment="Left" Cursor="Hand" Margin="10,5,0,5">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding ClearTable}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <TextBlock FontSize="10"  FontFamily="{StaticResource Medium}" Text="Limpar todos os dados" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    </Border>
+                </StackPanel>
+
+                <!-- Select Format 1-->
+                <DockPanel Grid.Row="4" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="0,5,0,5">
+                    <Border BorderThickness="1,1,1,1" BorderBrush="LightGray" CornerRadius="3,0,0,3" Padding="0" Background="White" Cursor="Hand">
+                        <ComboBox ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Items}" SelectedItem="{Binding Item1, Mode=TwoWay}" FontSize="9" FontFamily="{StaticResource Medium}" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyles}" Style="{StaticResource ComboBoxStyles}" Background="White" BorderThickness="0" VerticalContentAlignment="Center"></ComboBox>
+                    </Border>
+                </DockPanel>
+
+                <!-- Select Format 2-->
+                <DockPanel Grid.Row="4" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="-2,5,0,5">
+                    <Border BorderThickness="0,1,1,1" BorderBrush="LightGray" CornerRadius="0" Padding="0" Background="White" Cursor="Hand">
+                        <ComboBox ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Items}" SelectedItem="{Binding Item2, Mode=TwoWay}" FontSize="9" FontFamily="{StaticResource Medium}" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyles}" Style="{StaticResource ComboBoxStyles}" Background="White" BorderThickness="0" VerticalContentAlignment="Center"></ComboBox>
+                    </Border>
+                </DockPanel>
+
+                <!-- Select Format 3-->
+                <DockPanel Grid.Row="4" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="-2,5,0,5">
+                    <Border BorderThickness="0,1,1,1" BorderBrush="LightGray" CornerRadius="0" Padding="0" Background="White" Cursor="Hand">
+                        <ComboBox ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Items}" SelectedItem="{Binding Item3, Mode=TwoWay}" FontSize="9" FontFamily="{StaticResource Medium}" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyles}" Style="{StaticResource ComboBoxStyles}" Background="White" BorderThickness="0" VerticalContentAlignment="Center"></ComboBox>
+                    </Border>
+                </DockPanel>
+
+                <!-- Select Format 4-->
+                <DockPanel Grid.Row="4" Grid.Column="3" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="-2,5,0,5">
+                    <Border BorderThickness="0,1,1,1" BorderBrush="LightGray" CornerRadius="0" Padding="0" Background="White" Cursor="Hand">
+                        <ComboBox ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Items}" SelectedItem="{Binding Item4, Mode=TwoWay}" FontSize="9" FontFamily="{StaticResource Medium}" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyles}" Style="{StaticResource ComboBoxStyles}" Background="White" BorderThickness="0" VerticalContentAlignment="Center"></ComboBox>
+                    </Border>
+                </DockPanel>
+
+                <!-- Select Format 5-->
+                <DockPanel Grid.Row="4" Grid.Column="4" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="-2,5,0,5">
+                    <Border BorderThickness="0,1,1,1" BorderBrush="LightGray" CornerRadius="0" Padding="0" Background="White" Cursor="Hand">
+                        <ComboBox ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Items}" SelectedItem="{Binding Item5, Mode=TwoWay}" FontSize="9" FontFamily="{StaticResource Medium}" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyles}" Style="{StaticResource ComboBoxStyles}" Background="White" BorderThickness="0" VerticalContentAlignment="Center"></ComboBox>
+                    </Border>
+                </DockPanel>
+
+                <!-- Select Format 6-->
+                <DockPanel Grid.Row="4" Grid.Column="5" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="-2,5,0,5">
+                    <Border BorderThickness="0,1,1,1" BorderBrush="LightGray" CornerRadius="0" Padding="0" Background="White" Cursor="Hand">
+                        <ComboBox ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Items}" SelectedItem="{Binding Item6, Mode=TwoWay}" FontSize="9" FontFamily="{StaticResource Medium}" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyles}" Style="{StaticResource ComboBoxStyles}" Background="White" BorderThickness="0" VerticalContentAlignment="Center"></ComboBox>
+                    </Border>
+                </DockPanel>
+
+                <!-- Select Format 7-->
+                <DockPanel Grid.Row="4" Grid.Column="6" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="-2,5,0,5">
+                    <Border BorderThickness="0,1,1,1" BorderBrush="LightGray" CornerRadius="0" Padding="0" Background="White" Cursor="Hand">
+                        <ComboBox ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Items}" SelectedItem="{Binding Item7, Mode=TwoWay}" FontSize="9" FontFamily="{StaticResource Medium}" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyles}" Style="{StaticResource ComboBoxStyles}" Background="White" BorderThickness="0" VerticalContentAlignment="Center"></ComboBox>
+                    </Border>
+                </DockPanel>
+
+                <!-- Select Format 8-->
+                <DockPanel Grid.Row="4" Grid.Column="7" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="-2,5,0,5">
+                    <Border BorderThickness="0,1,1,1" BorderBrush="LightGray" CornerRadius="0,3,3,0" Padding="0" Background="White" Cursor="Hand">
+                        <ComboBox ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Items}" SelectedItem="{Binding Item8, Mode=TwoWay}" FontSize="9" FontFamily="{StaticResource Medium}" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyles}" Style="{StaticResource ComboBoxStyles}" Background="White" BorderThickness="0" VerticalContentAlignment="Center"></ComboBox>
+                    </Border>
+                </DockPanel>
+
+                <!-- Select Format 9 -->
+                <DockPanel Grid.Row="4" Grid.Column="8" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="-2,5,0,5">
+                    <Border BorderThickness="0,1,1,1" BorderBrush="LightGray" CornerRadius="0" Padding="0" Background="White" Cursor="Hand">
+                        <ComboBox ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Items}" SelectedItem="{Binding Item9, Mode=TwoWay}" FontSize="9" FontFamily="{StaticResource Medium}" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyles}" Style="{StaticResource ComboBoxStyles}" Background="White" BorderThickness="0" VerticalContentAlignment="Center"></ComboBox>
+                    </Border>
+                </DockPanel>
+
+                <!-- Select Format 10 -->
+                <DockPanel Grid.Row="4" Grid.Column="9" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="-2,5,0,5">
+                    <Border BorderThickness="0,1,1,1" BorderBrush="LightGray" CornerRadius="0" Padding="0" Background="White" Cursor="Hand">
+                        <ComboBox ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Items}" SelectedItem="{Binding Item10, Mode=TwoWay}" FontSize="9" FontFamily="{StaticResource Medium}" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyles}" Style="{StaticResource ComboBoxStyles}" Background="White" BorderThickness="0" VerticalContentAlignment="Center"></ComboBox>
+                    </Border>
+                </DockPanel>
+
+                <!-- Select Format 11 -->
+                <DockPanel Grid.Row="4" Grid.Column="10" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="-2,5,0,5">
+                    <Border BorderThickness="0,1,1,1" BorderBrush="LightGray" CornerRadius="0,3,3,0" Padding="0" Background="White" Cursor="Hand">
+                        <ComboBox ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Items}" SelectedItem="{Binding Item11, Mode=TwoWay}" FontSize="9" FontFamily="{StaticResource Medium}" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyles}" Style="{StaticResource ComboBoxStyles}" Background="White" BorderThickness="0" VerticalContentAlignment="Center"></ComboBox>
+                    </Border>
+                </DockPanel>
+
+
+                <!-- Parts list -->
+                <Border Grid.Row="5" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="11" Padding="0,0,0,0" CornerRadius="3" Margin="0,5,0,5"  BorderThickness="1" BorderBrush="LightGray">
+                    <ListView Margin="-1,-1,-1,-1"  VerticalAlignment="Top" Background="Transparent" ItemsSource="{Binding Parts, Mode=OneWay}" BorderThickness="0" BorderBrush="LightGray" MaxHeight="300" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.IsDeferredScrollingEnabled="True" UseLayoutRounding="True" VirtualizingStackPanel.CacheLength="0">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListViewItem">
+                                            <UniformGrid Height="24" Margin="-1,0,-1,0" Rows="1">
+
+                                                <Border Grid.Column="0"  BorderBrush="Lightgray" BorderThickness="0,0,0,1" Padding="3,0,0,0" Visibility="{Binding ItemVisibility1}" Background="{Binding PartBackground}">
+                                                    <TextBlock Text="{Binding Item1,  Mode=OneWay}" Background="Transparent" Padding="2,0,2,0" FontFamily="{StaticResource Medium}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="9"></TextBlock>
+                                                </Border>
+                                                <Border Grid.Column="1"  BorderBrush="Lightgray" BorderThickness="1,0,0,1" Padding="3,0,0,0" Visibility="{Binding ItemVisibility2}" Margin="-1,0,0,0" Background="{Binding PartBackground}">
+                                                    <TextBlock Text="{Binding Item2,  Mode=OneWay}" Background="Transparent" Padding="2,0,2,0" FontFamily="{StaticResource Medium}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="9"></TextBlock>
+                                                </Border>
+                                                <Border Grid.Column="2"  BorderBrush="Lightgray" BorderThickness="1,0,0,1" Padding="3,0,0,0" Visibility="{Binding ItemVisibility3}" Margin="-1,0,0,0" Background="{Binding PartBackground}">
+                                                    <TextBlock Text="{Binding Item3,  Mode=OneWay}" Background="Transparent" Padding="2,0,2,0" FontFamily="{StaticResource Medium}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="9"></TextBlock>
+                                                </Border>
+                                                <Border Grid.Column="3"  BorderBrush="Lightgray" BorderThickness="1,0,0,1" Padding="3,0,0,0" Visibility="{Binding ItemVisibility4}" Margin="-1,0,0,0" Background="{Binding PartBackground}">
+                                                    <TextBlock Text="{Binding Item4,  Mode=OneWay}" Background="Transparent" Padding="2,0,2,0" FontFamily="{StaticResource Medium}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="9"></TextBlock>
+                                                </Border>
+                                                <Border Grid.Column="4"  BorderBrush="Lightgray" BorderThickness="1,0,0,1" Padding="3,0,0,0" Visibility="{Binding ItemVisibility5}" Margin="-1,0,0,0" Background="{Binding PartBackground}">
+                                                    <TextBlock Text="{Binding Item5,  Mode=OneWay}" Background="Transparent" Padding="2,0,2,0" FontFamily="{StaticResource Medium}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="9"></TextBlock>
+                                                </Border>
+                                                <Border Grid.Column="5"  BorderBrush="Lightgray" BorderThickness="1,0,0,1" Padding="3,0,0,0" Visibility="{Binding ItemVisibility6}" Margin="-1,0,0,0" Background="{Binding PartBackground}">
+                                                    <TextBlock Text="{Binding Item6,  Mode=OneWay}" Background="Transparent" Padding="2,0,2,0" FontFamily="{StaticResource Medium}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="9"></TextBlock>
+                                                </Border>
+                                                <Border Grid.Column="6"  BorderBrush="Lightgray" BorderThickness="1,0,0,1" Padding="3,0,0,0" Visibility="{Binding ItemVisibility7}" Margin="-1,0,0,0" Background="{Binding PartBackground}">
+                                                    <TextBlock Text="{Binding Item7,  Mode=OneWay}" Background="Transparent" Padding="2,0,2,0" FontFamily="{StaticResource Medium}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="9"></TextBlock>
+                                                </Border>
+                                                <Border Grid.Column="7"  BorderBrush="Lightgray" BorderThickness="1,0,0,1" Padding="3,0,0,0" Visibility="{Binding ItemVisibility8}" Margin="-1,0,0,0" Background="{Binding PartBackground}">
+                                                    <TextBlock Text="{Binding Item8,  Mode=OneWay}" Background="Transparent" Padding="2,0,2,0" FontFamily="{StaticResource Medium}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="9"></TextBlock>
+                                                </Border>
+                                                <Border Grid.Column="8"  BorderBrush="Lightgray" BorderThickness="1,0,0,1" Padding="3,0,0,0" Visibility="{Binding ItemVisibility9}" Margin="-1,0,0,0" Background="{Binding PartBackground}">
+                                                    <TextBlock Text="{Binding Item9,  Mode=OneWay}" Background="Transparent" Padding="2,0,2,0" FontFamily="{StaticResource Medium}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="9"></TextBlock>
+                                                </Border>
+                                                <Border Grid.Column="9"  BorderBrush="Lightgray" BorderThickness="1,0,0,1" Padding="3,0,0,0" Visibility="{Binding ItemVisibility10}" Margin="-1,0,0,0" Background="{Binding PartBackground}">
+                                                    <TextBlock Text="{Binding Item10,  Mode=OneWay}" Background="Transparent" Padding="2,0,2,0" FontFamily="{StaticResource Medium}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="9"></TextBlock>
+                                                </Border>
+                                                <Border Grid.Column="10"  BorderBrush="Lightgray" BorderThickness="1,0,0,1" Padding="3,0,0,0" Visibility="{Binding ItemVisibility11}" Margin="-1,0,0,0" Background="{Binding PartBackground}">
+                                                    <TextBlock Text="{Binding Item11,  Mode=OneWay}" Background="Transparent" Padding="2,0,2,0" FontFamily="{StaticResource Medium}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="9"></TextBlock>
+                                                </Border>
+                                            </UniformGrid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </Border>
+                <!-- Confirm Button -->
+                <Border  Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="11" Background="{StaticResource PrimaryThemeColor}" CornerRadius="3" Cursor="Hand" Margin="0,5,0,0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction Command="{Binding ConfirmChanges}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <TextBlock FontSize="10"  FontFamily="{StaticResource Medium}" Text="Confirmar" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                </Border>
+            </Grid>
+        </Border>
+        <!-- End of Main Border -->
+    </Grid>
+</Window>

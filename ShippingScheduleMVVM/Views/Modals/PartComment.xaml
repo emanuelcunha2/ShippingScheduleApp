@@ -1,0 +1,68 @@
+﻿<Window x:Class="ShippingScheduleMVVM.Views.Modals.PartComment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShippingScheduleMVVM.Views" 
+        xmlns:viewmodels="clr-namespace:ShippingScheduleMVVM.ViewModels"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:modals="clr-namespace:ShippingScheduleMVVM.ViewModels.Modals"
+        d:DataContext="{d:DesignInstance Type=modals:PartCommentViewModel}"
+        mc:Ignorable="d" 
+        UseLayoutRounding="True" RenderOptions.BitmapScalingMode ="LowQuality"
+        WindowStyle="None" WindowStartupLocation="CenterOwner" AllowsTransparency="True"  
+        Title="{Binding Path=WindowSettings.Name, Mode=TwoWay, FallbackValue='ThisPartCommentWindow'}" Background="{x:Null}" ResizeMode="NoResize"
+        Top="{Binding Path=WindowSettings.Top, Mode=TwoWay}" 
+        Left="{Binding Path=WindowSettings.Left, Mode=TwoWay}" 
+        Height="{Binding Path=WindowSettings.Height, Mode=TwoWay}" 
+        Width="{Binding Path=WindowSettings.Width, Mode=TwoWay}"
+        x:Name="ThisPartCommentWindow">
+
+    <Grid Height="108" Width="155" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Grid.RenderTransform>
+            <ScaleTransform ScaleX="{Binding WindowSettings.ScaleX}" ScaleY="{Binding WindowSettings.ScaleY}" CenterX="0" CenterY="0" />
+        </Grid.RenderTransform>
+        <!-- DropShadow -->
+        <Border Background="#fafafa" CornerRadius="11" Margin="5">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Direction="-90"  RenderingBias="Performance" ShadowDepth="0" Opacity="0.3"/>
+            </Border.Effect>
+        </Border>
+        <!-- Main Border -->
+        <Border Background="#fafafa" CornerRadius="11" Margin="5">
+            <Grid Margin="11">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12*"></RowDefinition>
+                    <RowDefinition Height="0*"></RowDefinition>
+                    <RowDefinition Height="12*"></RowDefinition>
+                    <RowDefinition Height="15*"></RowDefinition>
+                    <RowDefinition Height="0*"></RowDefinition>
+                    <RowDefinition Height="16*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!-- Title -->
+                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="4" Margin="0,0,0,7" BorderThickness="1" Background="White" BorderBrush="LightGray" CornerRadius="2" Padding="3">
+                    <TextBox Style="{StaticResource CustomTextBoxStyle}" AcceptsReturn="True" Text="{Binding CurrentComment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Background="Transparent" FontFamily="{StaticResource Medium}" BorderThickness="0" VerticalContentAlignment="Top" FontSize="10" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+                </Border>
+
+                <!-- Confirm Button -->
+                <Border  Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Background="{StaticResource PrimaryThemeColor}" CornerRadius="3" Cursor="Hand">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction Command="{Binding ConfirmChanges}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <TextBlock FontSize="10"  FontFamily="{StaticResource Medium}" Text="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                </Border>
+
+            </Grid>
+        </Border>
+        <!-- End of Main Border -->
+    </Grid>
+</Window>
+

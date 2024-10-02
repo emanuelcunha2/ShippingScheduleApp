@@ -1,0 +1,100 @@
+﻿<Window x:Class="ShippingScheduleMVVM.Views.Modals.ExportRecordsExcelWindow"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShippingScheduleMVVM.Views" 
+        xmlns:viewmodels="clr-namespace:ShippingScheduleMVVM.ViewModels"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:modals="clr-namespace:ShippingScheduleMVVM.ViewModels.Modals"
+        d:DataContext="{d:DesignInstance Type=modals:ExportRecordsExcelViewModel}"
+        mc:Ignorable="d" 
+        UseLayoutRounding="True" RenderOptions.BitmapScalingMode ="LowQuality"
+        WindowStyle="None" WindowStartupLocation="CenterOwner" AllowsTransparency="True"  
+        Title="{Binding Path=WindowSettings.Name, Mode=TwoWay, FallbackValue='ThisExportRecordsExcelWindow'}" Background="{x:Null}" ResizeMode="NoResize"
+        Top="{Binding Path=WindowSettings.Top, Mode=TwoWay}" 
+        Left="{Binding Path=WindowSettings.Left, Mode=TwoWay}" 
+        Height="{Binding Path=WindowSettings.Height, Mode=TwoWay}" 
+        Width="{Binding Path=WindowSettings.Width, Mode=TwoWay}"
+        x:Name="ThisExportRecordsExcelWindow">
+    <Window.InputBindings>
+        <KeyBinding Key="Esc"  Command="{Binding CloseWindow}" CommandParameter="{Binding ElementName=ThisExportRecordsExcelWindow}"/>
+        <KeyBinding Key="Enter"  Command="{Binding ConfirmChanges}"/>
+    </Window.InputBindings>
+
+    <Grid Height="190" Width="205" HorizontalAlignment="Left" VerticalAlignment="Top"> 
+        <Grid.RenderTransform>
+            <ScaleTransform ScaleX="{Binding WindowSettings.ScaleX}" ScaleY="{Binding WindowSettings.ScaleY}" CenterX="0" CenterY="0" />
+        </Grid.RenderTransform>
+        <!-- DropShadow -->
+        <Border Background="#fafafa" CornerRadius="15" Margin="5">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Direction="-90"  RenderingBias="Performance" ShadowDepth="0" Opacity="0.3"/>
+            </Border.Effect>
+        </Border>
+        <!-- Main Border -->
+        <Border Background="#fafafa" CornerRadius="15" Margin="5">
+            <Grid Margin="17">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.05*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition> 
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*"></RowDefinition>
+                    <RowDefinition Height="25*"></RowDefinition>
+                    <RowDefinition Height="25*"></RowDefinition>
+                    <RowDefinition Height="25*"></RowDefinition> 
+                    <RowDefinition Height="25*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!-- Close Window Button -->
+                <Border Grid.Row="0" Grid.Column="6" Height="11" Width="11" Margin="0,-6,-5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Cursor="Hand" CornerRadius="10">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction Command="{Binding CloseWindow}" CommandParameter="{Binding ElementName=ThisExportRecordsExcelWindow}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Image Stretch="Uniform"  RenderOptions.BitmapScalingMode="HighQuality" Source="/Resources/Images/Cross_bs.png" />
+                </Border>
+                
+                <TextBlock Grid.ColumnSpan="2" Margin="0,-5,0,0" Text="Export to Excel" FontFamily="{StaticResource Bold}" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="17" Foreground="{StaticResource PrimaryThemeColor}"/>
+
+                <!-- Initial Date --> 
+                <TextBlock Grid.Row="1" Grid.Column="0" FontSize="10.5" FontFamily="{StaticResource Medium}" Text="Start Date" VerticalAlignment="Center"/>
+                <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" BorderThickness="1" Background="White" BorderBrush="LightGray" CornerRadius="2" Margin="0,3,0,3"  Padding="0,1,0,0">
+                    <DatePicker Language="pt-PT" SelectedDate="{Binding StartDate, FallbackValue=01/01/2023}" FontFamily="{StaticResource Medium}" CalendarStyle="{DynamicResource DatePickerCalendarStyles}" Style="{DynamicResource DatePickerStyles}"  Background="Transparent" BorderThickness="0"  FontSize="10" Focusable="False">
+                    </DatePicker>
+                </Border>
+
+                <!-- Final Date -->
+                <TextBlock Grid.Row="2" Grid.Column="0" FontSize="10.5" FontFamily="{StaticResource Medium}" Text="End Date" VerticalAlignment="Center"/>
+                <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" BorderThickness="1" Background="White" BorderBrush="LightGray" CornerRadius="2" Margin="0,3,0,3"  Padding="0,1,0,0">
+                    <DatePicker Language="pt-PT" SelectedDate="{Binding EndDate, FallbackValue=01/01/2023}" FontFamily="{StaticResource Medium}" CalendarStyle="{DynamicResource DatePickerCalendarStyles}" Style="{DynamicResource DatePickerStyles}"  Background="Transparent" BorderThickness="0"  FontSize="10" Focusable="False">
+                    </DatePicker>
+                </Border>
+                
+                <!-- Export Records parts -->
+                <TextBlock Grid.Row="3" Grid.Column="0" FontSize="10.5" FontFamily="{StaticResource Medium}" Text="Export Parts?" VerticalAlignment="Center" Cursor="Hand">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction Command="{Binding ChangeExportParts}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+                <Border  Grid.Row="3" Grid.Column="1"  Cursor="Hand" Width="11" Height="11" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <CheckBox Style="{StaticResource CheckBoxStyle2}" IsChecked="{Binding ExportParts, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center" Cursor="Hand"></CheckBox>
+                </Border>
+                
+                <!-- Register Button -->
+                <Border Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="7" Background="{StaticResource PrimaryThemeColor}" CornerRadius="3" Cursor="Hand" Margin="0,6,0,0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction Command="{Binding ConfirmChanges}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <TextBlock FontSize="10"  FontFamily="{StaticResource Medium}" Text="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                </Border>
+            </Grid>
+        </Border>
+        <!-- End of Main Border -->
+    </Grid>
+</Window>

@@ -1,0 +1,146 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows10.0.22621.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	<UseWindowsForms>true</UseWindowsForms>
+	<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+	<ApplicationIcon>icon.ico</ApplicationIcon>
+	<AssemblyName>ShippingScheduleMVVM</AssemblyName>
+	<SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="App.config" />
+    <None Remove="icon.ico" />
+    <None Remove="Resources\Fonts\Nunito-Bold.ttf" />
+    <None Remove="Resources\Fonts\Nunito-Medium.ttf" />
+    <None Remove="Resources\Images\Arrow_left.png" />
+    <None Remove="Resources\Images\Arrow_right.png" />
+    <None Remove="Resources\Images\Calendar_w.png" />
+    <None Remove="Resources\Images\Check.png" />
+    <None Remove="Resources\Images\Check_g.png" />
+    <None Remove="Resources\Images\Clock.png" />
+    <None Remove="Resources\Images\created.png" />
+    <None Remove="Resources\Images\Cross.png" />
+    <None Remove="Resources\Images\Cross_bs.png" />
+    <None Remove="Resources\Images\Danger_r.png" />
+    <None Remove="Resources\Images\dhl.png" />
+    <None Remove="Resources\Images\dhl_logo.png" />
+    <None Remove="Resources\Images\double_down_thk.png" />
+    <None Remove="Resources\Images\double_l.png" />
+    <None Remove="Resources\Images\double_r.png" />
+    <None Remove="Resources\Images\double_up.png" />
+    <None Remove="Resources\Images\double_up_thk.png" />
+    <None Remove="Resources\Images\excel_logo.png" />
+    <None Remove="Resources\Images\hidden.png" />
+    <None Remove="Resources\Images\Home_w.png" />
+    <None Remove="Resources\Images\lines.png" />
+    <None Remove="Resources\Images\Logoff_w.png" />
+    <None Remove="Resources\Images\Maximize.png" />
+    <None Remove="Resources\Images\Minimize.png" />
+    <None Remove="Resources\Images\Minus.png" />
+    <None Remove="Resources\Images\Normalize.png" />
+    <None Remove="Resources\Images\Notification_off.png" />
+    <None Remove="Resources\Images\Notification_on.png" />
+    <None Remove="Resources\Images\padlock.png" />
+    <None Remove="Resources\Images\Plus.png" />
+    <None Remove="Resources\Images\pontilhado.png" />
+    <None Remove="Resources\Images\prepared.png" />
+    <None Remove="Resources\Images\process.png" />
+    <None Remove="Resources\Images\Profile_user.png" />
+    <None Remove="Resources\Images\released.png" />
+    <None Remove="Resources\Images\Settings_g.png" />
+    <None Remove="Resources\Images\Settings_w.png" />
+    <None Remove="Resources\Images\shipped.png" />
+    <None Remove="Resources\Images\tnt.png" />
+    <None Remove="Resources\Images\tnt_logo.png" />
+    <None Remove="Resources\Images\Truck.png" />
+    <None Remove="Resources\Images\truck_plan.png" />
+    <None Remove="Resources\Images\truck_prepared.png" />
+    <None Remove="Resources\Images\truck_shipped.png" />
+    <None Remove="Resources\Images\view.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
+    <PackageReference Include="EPPlus" Version="6.2.4" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+    <PackageReference Include="Mnt.Microsoft.Exchange.WebServices.Data" Version="2.2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icon.ico" />
+    <Resource Include="Resources\Fonts\Nunito-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Nunito-Medium.ttf" />
+    <Resource Include="Resources\Images\Arrow_left.png" />
+    <Resource Include="Resources\Images\Arrow_right.png" />
+    <Resource Include="Resources\Images\Calendar_w.png" />
+    <Resource Include="Resources\Images\Check.png" />
+    <Resource Include="Resources\Images\dhl_logo.png" />
+    <Resource Include="Resources\Images\pontilhado.png" />
+    <Resource Include="Resources\Images\tnt.png" />
+    <Resource Include="Resources\Images\Check_g.png" />
+    <Resource Include="Resources\Images\Clock.png" />
+    <Resource Include="Resources\Images\created.png" />
+    <Resource Include="Resources\Images\Cross.png" />
+    <Resource Include="Resources\Images\Cross_bs.png" />
+    <Resource Include="Resources\Images\Danger_r.png" />
+    <Resource Include="Resources\Images\dhl.png" />
+    <Resource Include="Resources\Images\double_down_thk.png" />
+    <Resource Include="Resources\Images\double_l.png" />
+    <Resource Include="Resources\Images\double_r.png" />
+    <Resource Include="Resources\Images\double_up.png" />
+    <Resource Include="Resources\Images\double_up_thk.png" />
+    <Resource Include="Resources\Images\excel_logo.png" />
+    <Resource Include="Resources\Images\hidden.png" />
+    <Resource Include="Resources\Images\Home_w.png" />
+    <Resource Include="Resources\Images\lines.png" />
+    <Resource Include="Resources\Images\Logoff_w.png" />
+    <Resource Include="Resources\Images\Maximize.png" />
+    <Resource Include="Resources\Images\Minimize.png" />
+    <Resource Include="Resources\Images\Minus.png" />
+    <Resource Include="Resources\Images\Normalize.png" />
+    <Resource Include="Resources\Images\Notification_off.png" />
+    <Resource Include="Resources\Images\Notification_on.png" />
+    <Resource Include="Resources\Images\padlock.png" />
+    <Resource Include="Resources\Images\Plus.png" />
+    <Resource Include="Resources\Images\prepared.png" />
+    <Resource Include="Resources\Images\process.png" />
+    <Resource Include="Resources\Images\Profile_user.png" />
+    <Resource Include="Resources\Images\released.png" />
+    <Resource Include="Resources\Images\Settings_g.png" />
+    <Resource Include="Resources\Images\Settings_w.png" />
+    <Resource Include="Resources\Images\shipped.png" />
+    <Resource Include="Resources\Images\tnt_logo.png" />
+    <Resource Include="Resources\Images\Truck.png" />
+    <Resource Include="Resources\Images\truck_plan.png" />
+    <Resource Include="Resources\Images\truck_prepared.png" />
+    <Resource Include="Resources\Images\truck_shipped.png" />
+    <Resource Include="Resources\Images\view.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>
